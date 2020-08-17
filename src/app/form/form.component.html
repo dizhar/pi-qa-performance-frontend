@@ -1,0 +1,90 @@
+<div class="col-12">
+  <div class="row">  
+  <header>
+      <h1>List of Websites</h1>
+    </header>
+  </div>
+
+
+  <div class="row">
+    <div class="form-check form-check-inline">
+      <input #rad1 class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="test production"  (change)="onItemChange($event.target.value)">
+      <label class="form-check-label" for="inlineRadio1">Test Production</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input #rad2 class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="test qa"  (change)="onItemChange($event.target.value)" checked>
+      <label class="form-check-label" for="inlineRadio2">Test QA</label>
+    </div>
+    <div class="form-check">
+      <input #spa class="form-check-input" type="checkbox" value="true" id="defaultCheck1">
+      <label class="form-check-label" for="defaultCheck1">
+        SPA 
+      </label>
+    </div>
+  </div>
+
+    <div class="row">
+    <div class="input-group mb-3"> 
+      <input #webpageWithoutPIM type="text" class="form-control" placeholder="Web Page without PIM" aria-label="Add a web page" aria-describedby="basic-addon2" (input)="onWebPageChange()" >
+      <input #webpageWithPIM [hidden]="isWebpageWithPIMDisplayed"   type="text" class="form-control" placeholder="Web Page with PIM" aria-label="Add a web page" aria-describedby="basic-addon2" (input)="onWebPageChange()"> 
+      <input #script_tag  [hidden]="isDisplay" id="agentAddress" type="text" class="form-control" placeholder="PIM script tag" aria-label="Add PIM script tag" aria-describedby="basic-addon2"  (input)="onscriptTagchange()" > 
+      <select #browser>
+        <option value="chrome" selected>Chrome</option>
+        <option value="firefox">Firefox</option>
+      </select>
+      <input #iterations id="iterations" pattern="[0-9]*" type="number" value="1" min="1" data-bind="value:replyNumber"/>
+      <div class="input-group-append"  [ngSwitch]="isDisabled">
+        <button class="btn btn-outline-info"  *ngSwitchCase="true" id="enter" type="button"  (click)="onAdd(webpageWithoutPIM.value ? webpageWithoutPIM.value: null,  webpageWithPIM.value ? webpageWithPIM.value: null,  script_tag.value ? script_tag.value : null, rad1.checked ? rad1.value : rad2.checked ? rad2.value : null, iterations.value, browser.value,  spa.checked ? spa.value: false)"  disabled>Add</button>
+        <button class="btn btn-outline-info"  *ngSwitchCase="false" id="enter" type="button"  (click)="onAdd(webpageWithoutPIM.value ? webpageWithoutPIM.value: null, webpageWithPIM.value ? webpageWithPIM.value: null,  script_tag.value ? script_tag.value : null, rad1.checked ? rad1.value : rad2.checked ? rad2.value : null, iterations.value, browser.value, spa.checked ? spa.value: false)">Add</button>
+        <button class="btn btn-outline-info"  *ngSwitchDefault id="enter" type="button"  (click)="onAdd(webpageWithoutPIM.value ? webpageWithoutPIM.value: null, webpageWithPIM.value ? webpageWithPIM.value: null, script_tag.value ? script_tag.value : null, rad1.checked ? rad1.value : rad2.checked ? rad2.value : null, iterations.value, browser.value, spa.checked ? spa.value: false)" disabled>Add</button>
+      </div>
+    </div>
+    </div>
+  </div>
+ 
+
+
+
+
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Remove #</th>
+        <th scope="col">Goal</th>
+        <th scope="col">Web Page Without PIM</th>
+        <th scope="col">Web Page With PIM</th>
+        <th scope="col">Script Tag</th>
+        <th scope="col">Iteration</th>
+        <th scope="col">Browser</th>
+        <th scope="col">SPA</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of list; let i = index">
+        <td><button type="button" class="btn btn-primary" data-toggle="button"  (click)="onRemove(i)">
+          {{i+1}}
+        </button>
+        </td>
+        <td>{{item.goal}}</td>
+        <td>{{item.webpageWithoutPIM}}</td>
+        <td>{{item.webpageWithPIM}}</td>
+        <td>{{item.script_tag}}</td>
+        <td>{{item.iterations}}</td>
+        <td>{{item.browser}}</td>
+        <td>{{item.spa}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+<div class="col-12">
+  <div class="row">
+    <button  #performanceButton *ngIf=!isLoading  type="button" class="btn btn-primary btn-lg btn-block" (click)="submit()">Start Web Performance</button>
+    <button  *ngIf=isLoading type="button" class="btn btn-primary btn-lg btn-block"   disabled>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    </button>
+  </div>
+</div>
+
+

@@ -1,0 +1,32 @@
+<div class="table-responsive">
+    <h3> Dom Interactive Time Test</h3>
+<table class="table table-hover table-dark">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">PIM Agent Enabled</th>
+        <th scope="col">PIM Agent Disabled</th>
+        <th scope="col">Compare</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Chrome</th>
+        <td> <a href="http://localhost:3000/piqaautomationstorage/{{outPuts['data'].agent.link}}" target="_blank">{{outPuts['data'].agent.link}}</a>   </td>
+        <td> <a href="http://localhost:3000/piqaautomationstorage{{outPuts['data'].noAgent.link}}" target="_blank">{{outPuts['data'].noAgent.link}}</a>  </td>
+        <td> <a href="https://compare.sitespeed.io/?har1=http://localhost:3000/piqaautomationstorage{{outPuts['data'].agent.harPath}}&har2=http://localhost:3000/piqaautomationstorage{{outPuts['data'].noAgent.harPath}}&compare=1" target="_blank">Compare</a></td>
+      </tr>
+      <tr>
+        <th scope="row">Firefox</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">Safari</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
