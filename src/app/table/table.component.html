@@ -4,28 +4,25 @@
     <thead>
       <tr>
         <th scope="col">#</th>
+        <th scope="col">Goal</th>
+        <th scope="col">Browser</th>
+        <th scope="col">Iterations</th>
+        <th scope="col">SPA</th>
         <th scope="col">PIM Agent Enabled</th>
         <th scope="col">PIM Agent Disabled</th>
         <th scope="col">Compare</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">Chrome</th>
-        <td> <a href="http://localhost:3000/piqaautomationstorage/{{outPuts['data'].agent.link}}" target="_blank">{{outPuts['data'].agent.link}}</a>   </td>
-        <td> <a href="http://localhost:3000/piqaautomationstorage{{outPuts['data'].noAgent.link}}" target="_blank">{{outPuts['data'].noAgent.link}}</a>  </td>
-        <td> <a href="https://compare.sitespeed.io/?har1=http://localhost:3000/piqaautomationstorage{{outPuts['data'].agent.harPath}}&har2=http://localhost:3000/piqaautomationstorage{{outPuts['data'].noAgent.harPath}}&compare=1" target="_blank">Compare</a></td>
-      </tr>
-      <tr>
-        <th scope="row">Firefox</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">Safari</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
+      <tr   *ngFor="let item of list; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <th scope="row">{{item.agent.session.goal}}</th>
+        <td>{{item.agent.pageXray[0].meta.browser.name}} v.{{item.agent.pageXray[0].meta.browser.version}}</td>
+        <th scope="row">{{item.agent.session.iterations}}</th>
+        <th scope="row">{{item.agent.session.spa}}</th>
+        <td> <a href="http://localhost:3000/piqaautomationstorage/{{item.agent.link}}" target="_blank">{{item.agent.link}}</a></td>
+        <td> <a href="http://localhost:3000/piqaautomationstorage{{item.noAgent.link}}" target="_blank">{{item.noAgent.link}}</a>  </td>
+        <td> <a href="https://compare.sitespeed.io/?har1=http://localhost:3000/piqaautomationstorage{{item.agent.harPath}}&har2=http://localhost:3000/piqaautomationstorage{{item.noAgent.harPath}}&compare=1" target="_blank">Compare</a></td>
       </tr>
     </tbody>
   </table>

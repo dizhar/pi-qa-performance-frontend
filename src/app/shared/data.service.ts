@@ -8,9 +8,8 @@ import {  throwError, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
-  pageXray: Object; 
+  results: Object; 
   private REST_API_SERVER = "http://localhost:3000";
-
 
   constructor(private httpClient: HttpClient) { }
 
@@ -29,21 +28,24 @@ export class DataService {
   }
 
 
-    sendPostRequest(data: {}): Observable<any> {
-      console.log("send data:", data);
+    sendPostRequest(data: object[]): Observable<any> {
       return this.httpClient.post<any>(this.REST_API_SERVER, data).pipe(retry(3), catchError(this.handleError));
  }
 
 
 
   public setResuls(data: Object): Object {
-    console.log("get Results1", data);
-        this.pageXray = data;
-        console.log("get Results2", this.pageXray);
-        return this.pageXray;
+        this.results = data;
+        return data;
   }
-  public getPageExray(): Object{
-      return  this.pageXray
+
+
+  public getResults(): Object {
+    return  this.results;
+  }
+  
+  public deleteTempConfigFile(list: string[]): Observable<object>{
+    return this.httpClient.post<any>(`${this.REST_API_SERVER}/remove`, list).pipe(retry(3), catchError(this.handleError));
   }
 
 

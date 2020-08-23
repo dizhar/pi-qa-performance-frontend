@@ -17,7 +17,7 @@ export class FormComponent implements OnInit,  OnDestroy, AfterViewInit {
   @ViewChild('script_tag') script_tag : ElementRef;
 @ViewChild('performanceButton') performanceButton: ElementRef;
 
-  list = new Array();
+  list: any[] = [];
   destroy$: Subject<boolean> = new Subject<boolean>();
   isLoading: boolean = false;
   isDisplay: boolean = false;
@@ -32,10 +32,6 @@ export class FormComponent implements OnInit,  OnDestroy, AfterViewInit {
     if(this.list.length === 0) this.performanceButton.nativeElement.disabled = true;
   }
 
-
-
-
-
   onAdd(webpageWithoutPIM : string, webpageWithPIM: string, script_tag: string, goal: string, iterations: string, browser: string, spa: boolean){
     
 
@@ -49,11 +45,6 @@ export class FormComponent implements OnInit,  OnDestroy, AfterViewInit {
        'browser': browser,
        'spa': spa
       }
-
-
-      console.log("config:", config);
-
-
 
     
       //Add config type to list.
@@ -77,13 +68,11 @@ export class FormComponent implements OnInit,  OnDestroy, AfterViewInit {
 
   submit(){
    this.isLoading=true; // Display the loading spinner button
-   this.list.forEach(item => {
-    this.dataService.sendPostRequest(item).subscribe((data: any[])=>{
+    this.dataService.sendPostRequest(this.list).subscribe((data: any[])=>{
       this.isLoading=false; // UnDisaply the loading spinner button
       this.dataService.setResuls(data);
       this.router.navigate(['/table']);  // Navigate to the Table page.
-    })  
-   });  
+    })   
   }
 
 
