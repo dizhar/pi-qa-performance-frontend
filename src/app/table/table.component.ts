@@ -22,6 +22,8 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.outPuts = this.dataService.getResults();
     this.list = this.outPuts['data'];
 
+    console.log("daniel:", this.list)
+
       console.log("(this.outPuts['data']:", this.outPuts['data']);
 
     this.deleteConfigFiles(this.outPuts['data'])
