@@ -21,15 +21,18 @@ export class TableComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void{
     this.outPuts = this.dataService.getResults();
     this.list = this.outPuts['data'];
+
+      console.log("(this.outPuts['data']:", this.outPuts['data']);
+
     this.deleteConfigFiles(this.outPuts['data'])
   }
 
 
 
   private deleteConfigFiles(list: []) {
-    this.outPuts['data'].forEach(item => {
-      if (!this.listofConfigFiles.includes(item.agent.session.configFile)) {
-        this.listofConfigFiles.push(item.agent.session.configFile);
+   list.forEach(item => {
+      if (!this.listofConfigFiles.includes(item['agent']['session']['configFile'])) {
+        this.listofConfigFiles.push(item['agent']['session']['configFile']);
       }
     });
 

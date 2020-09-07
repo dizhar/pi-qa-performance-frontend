@@ -9,7 +9,7 @@ import {  throwError, Observable } from 'rxjs';
 })
 export class DataService {
   results: Object; 
-  private REST_API_SERVER = "http://localhost:3000";
+  private REST_API_SERVER = "http://104.208.220.28:3000";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -45,6 +45,7 @@ export class DataService {
   }
   
   public deleteTempConfigFile(list: string[]): Observable<object>{
+    console.log("list:", list);
     return this.httpClient.post<any>(`${this.REST_API_SERVER}/remove`, list).pipe(retry(3), catchError(this.handleError));
   }
 
