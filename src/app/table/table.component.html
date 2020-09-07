@@ -20,9 +20,9 @@
         <td>{{item.agent.pageXray[0].meta.browser.name}} v.{{item.agent.pageXray[0].meta.browser.version}}</td>
         <th scope="row">{{item.agent.session.iterations}}</th>
         <th scope="row">{{item.agent.session.spa}}</th>
-        <td> <a href="http://104.208.220.28/:3000/{{item.agent.link}}" target="_blank">{{item.agent.link}}</a></td>
-        <td> <a href="http://104.208.220.28:3000/{{item.noAgent.link}}" target="_blank">{{item.noAgent.link}}</a>  </td>
-        <td> <a href="https://compare.sitespeed.io/?har1=http://localhost:104.208.220.28/{{item.agent.harPath}}&har2=http://localhost:104.208.220.28/{{item.noAgent.harPath}}&compare=1" target="_blank">Compare</a></td>
+        <td> <a href="{{item.agent.link}}" target="_blank">{{item.agent.link}}</a></td>
+        <td> <a href="{{item.noAgent.link}}" target="_blank">{{item.noAgent.link}}</a>  </td>
+        <td> <a href="https://compare.sitespeed.io/?har1={{item.agent.harPath}}&har2={{item.noAgent.harPath}}&compare=1" target="_blank">Compare</a></td>
       </tr>
     </tbody>
   </table>
