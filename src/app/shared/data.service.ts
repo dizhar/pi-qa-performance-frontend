@@ -6,23 +6,44 @@ import { throwError, Observable } from 'rxjs';
 @Injectable({
 	providedIn: 'root'
 })
+export interface Config {
+	BACKEND_IP: string;
+	BACKEND_PORT: string;
+  }
 export class DataService {
 	results: Object;
+
+	private configUrl = 'assets/json/runtime.json';
+
 	// private REST_API_SERVER = "http://104.208.220.28:3000";
 	// private backend_ip=`${process.env.HOST_IP}`
-	private backend_ip="104.208.220.28"
+	// private backend_ip="104.208.220.28"
 
-	private backend_port="3000"
+	// private backend_port="3000"
 
-	private REST_API_SERVER = `http://${this.backend_ip}:${this.backend_port}`
+	private REST_API_SERVER //= `http://${this.backend_ip}:${this.backend_port}`
+
+	private config
 
 	constructor(private httpClient: HttpClient) { 
-		this.httpClient.get( 'assets/json/runtime.json' ).map( result => result.PARAM_HOST_IP ).subscribe( 
-            api_url => {
-                
-            }
-        );
+	
+		this.getConfig()
+			.subscribe((data: Config) => this.config = {
+				backendIP: data.BACKEND_IP,
+				backendPort:  data.BACKEND_PORT
+			});
+
+		this.REST_API_SERVER = `http://${this.config.backendIP}:${this.config.backendPort}`
+
 	}
+
+	
+
+	getConfig() {
+		return this.httpClient.get(this.configUrl);
+	}
+
+	
 
 	handleError(error: HttpErrorResponse) {
 		let errorMessage = 'Unknown error!';
