@@ -8,7 +8,13 @@ import { throwError, Observable } from 'rxjs';
 })
 export class DataService {
 	results: Object;
-	private REST_API_SERVER = "http://104.208.220.28:3000";
+	// private REST_API_SERVER = "http://104.208.220.28:3000";
+	// private backend_ip=`${process.env.HOST_IP}`
+	private backend_ip="104.208.220.28"
+
+	private backend_port="3000"
+
+	private REST_API_SERVER = `http://${this.backend_ip}:${this.backend_port}`
 
 	constructor(private httpClient: HttpClient) { }
 
