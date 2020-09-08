@@ -30,26 +30,22 @@ export class DataService {
 	
 		this.getConfig()
 			.subscribe((data: Config) => {
+
+				console.log(data.BACKEND_IP);
 				this.config = {
 					backendIP: data.BACKEND_IP,
 					backendPort:  data.BACKEND_PORT
 				};
+				console.log(this.config.backendIP);
 				this.REST_API_SERVER = `http://${this.config.backendIP}:${this.config.backendPort}`;
 				console.log("REST_API_SERVER");
 				console.log(this.REST_API_SERVER);
 		});
-
-		
-
 	}
-
-	
 
 	getConfig() {
 		return this.httpClient.get(this.configUrl);
-	}
-
-	
+	}	
 
 	handleError(error: HttpErrorResponse) {
 		let errorMessage = 'Unknown error!';
