@@ -15,13 +15,6 @@ export class DataService {
 	results: Object;
 
 	private configUrl = 'assets/json/runtime.json';
-
-	// private REST_API_SERVER = "http://104.208.220.28:3000";
-	// private backend_ip=`${process.env.HOST_IP}`
-	// private backend_ip="104.208.220.28"
-
-	// private backend_port="3000"
-
 	private REST_API_SERVER //= `http://${this.backend_ip}:${this.backend_port}`
 
 	private config
@@ -31,15 +24,11 @@ export class DataService {
 		this.getConfig()
 			.subscribe((data: Config) => {
 				console.log(data);
-				console.log(data.BACKEND_IP);
 				this.config = {
 					backendIP: data.BACKEND_IP,
 					backendPort:  data.BACKEND_PORT
 				};
-				console.log(this.config.backendIP);
 				this.REST_API_SERVER = `http://${this.config.backendIP}:${this.config.backendPort}`;
-				console.log("REST_API_SERVER");
-				console.log(this.REST_API_SERVER);
 		});
 	}
 
