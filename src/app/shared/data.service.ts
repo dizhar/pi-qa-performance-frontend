@@ -3,13 +3,14 @@ import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 import { retry, catchError } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
 
-@Injectable({
-	providedIn: 'root'
-})
 export interface Config {
 	BACKEND_IP: string;
 	BACKEND_PORT: string;
-  }
+}
+
+@Injectable({
+	providedIn: 'root'
+})
 export class DataService {
 	results: Object;
 

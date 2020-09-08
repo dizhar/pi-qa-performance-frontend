@@ -1,4 +1,4 @@
 {
-    "PARAM_HOST_IP": "${HOST_IP}"
-
+    "BACKEND_IP": "${HOST_IP}",
+    "BACKEND_PORT": "3000"
 }
