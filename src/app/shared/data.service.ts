@@ -30,7 +30,7 @@ export class DataService {
 	
 		this.getConfig()
 			.subscribe((data: Config) => {
-
+				console.log(data);
 				console.log(data.BACKEND_IP);
 				this.config = {
 					backendIP: data.BACKEND_IP,
