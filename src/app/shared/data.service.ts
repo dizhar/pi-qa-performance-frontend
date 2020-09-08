@@ -35,6 +35,8 @@ export class DataService {
 					backendPort:  data.BACKEND_PORT
 				};
 				this.REST_API_SERVER = `http://${this.config.backendIP}:${this.config.backendPort}`;
+				console.log("REST_API_SERVER");
+				console.log(this.REST_API_SERVER);
 		});
 
 		
@@ -63,6 +65,8 @@ export class DataService {
 	}
 
 	sendPostRequest(data: object[]): Observable<any> {
+		this.REST_API_SERVER = `http://${this.config.backendIP}:${this.config.backendPort}`;
+
 		return this.httpClient.post<any>(this.REST_API_SERVER, data).pipe(retry(3), catchError(this.handleError));
 	}
 
