@@ -16,7 +16,13 @@ export class DataService {
 
 	private REST_API_SERVER = `http://${this.backend_ip}:${this.backend_port}`
 
-	constructor(private httpClient: HttpClient) { }
+	constructor(private httpClient: HttpClient) { 
+		this.httpClient.get( 'assets/json/runtime.json' ).map( result => result.PARAM_HOST_IP ).subscribe( 
+            api_url => {
+                
+            }
+        );
+	}
 
 	handleError(error: HttpErrorResponse) {
 		let errorMessage = 'Unknown error!';
