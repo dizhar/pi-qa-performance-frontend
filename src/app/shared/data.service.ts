@@ -29,12 +29,15 @@ export class DataService {
 	constructor(private httpClient: HttpClient) { 
 	
 		this.getConfig()
-			.subscribe((data: Config) => this.config = {
-				backendIP: data.BACKEND_IP,
-				backendPort:  data.BACKEND_PORT
-			});
+			.subscribe((data: Config) => {
+				this.config = {
+					backendIP: data.BACKEND_IP,
+					backendPort:  data.BACKEND_PORT
+				};
+				this.REST_API_SERVER = `http://${this.config.backendIP}:${this.config.backendPort}`;
+		});
 
-		this.REST_API_SERVER = `http://${this.config.backendIP}:${this.config.backendPort}`
+		
 
 	}
 
