@@ -1,4 +1,4 @@
 {
-    "BACKEND_IP": "${HOST_IP}",
-    "BACKEND_PORT": "3000"
+    "BACKEND_IP": "${BACKEND_IP}",
+    "BACKEND_PORT": "${BACKEND_PORT}"
 }
