@@ -25,4 +25,10 @@ cat /usr/share/nginx/html/assets/json/runtime.json
 echo ""
 
 echo "Starting nginx ..."
-nginx -g 'daemon off;'
+
+ls -l
+
+echo "Run base image entrypoint.sh"
+./entrypoint.sh
+
+# nginx -g 'daemon off;'
