@@ -29,6 +29,6 @@ echo "Starting nginx ..."
 ls -l
 
 echo "Run base image entrypoint.sh"
-./entrypoint.sh
+/scripts/entrypoint.sh
 
 # nginx -g 'daemon off;'
