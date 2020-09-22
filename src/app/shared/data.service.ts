@@ -6,6 +6,7 @@ import { throwError, Observable } from 'rxjs';
 export interface Config {
 	BACKEND_IP: string;
 	BACKEND_PORT: string;
+	HOST_ADDRESS: string;
 }
 
 @Injectable({
@@ -26,9 +27,17 @@ export class DataService {
 				console.log(data);
 				this.config = {
 					backendIP: data.BACKEND_IP,
-					backendPort:  data.BACKEND_PORT
+					backendPort:  data.BACKEND_PORT,
+					host_address: data.HOST_ADDRESS,
 				};
-				this.REST_API_SERVER = `http://${this.config.backendIP}:${this.config.backendPort}`;
+
+				if (this.config.host_address != "" ){
+					this.REST_API_SERVER = `https://${this.config.host_address}/be`;
+
+				} else {
+					this.REST_API_SERVER = `http://${this.config.backendIP}:${this.config.backendPort}`;
+				}
+				
 		});
 	}
 
@@ -50,7 +59,7 @@ export class DataService {
 	}
 
 	sendPostRequest(data: object[]): Observable<any> {
-		this.REST_API_SERVER = `http://${this.config.backendIP}:${this.config.backendPort}`;
+		//this.REST_API_SERVER = `http://${this.config.backendIP}:${this.config.backendPort}`;
 
 		return this.httpClient.post<any>(this.REST_API_SERVER, data).pipe(retry(3), catchError(this.handleError));
 	}

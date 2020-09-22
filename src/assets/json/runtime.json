@@ -1,4 +1,5 @@
 {
+    "HOST_ADDRESS": "${HOST_ADDRESS}",
     "BACKEND_IP": "${BACKEND_IP}",
     "BACKEND_PORT": "${BACKEND_PORT}"
 }

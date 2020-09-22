@@ -7,6 +7,8 @@ export BACKEND_IP=${HOST_IP}
 export BACKEND_PORT=${BACKEND_PORT:-"3000"}
 
 echo "HOST_IP       : ${HOST_IP}"
+echo "HOST_ADDRESS  : ${HOST_ADDRESS}"
+
 echo "BACKEND_IP    : ${BACKEND_IP}"
 echo "BACKEND_PORT  : ${BACKEND_PORT}"
 
