@@ -37,6 +37,8 @@ export class DataService {
 				} else {
 					this.REST_API_SERVER = `http://${this.config.backendIP}:${this.config.backendPort}`;
 				}
+				console.log(this.REST_API_SERVER);
+
 				
 		});
 	}
