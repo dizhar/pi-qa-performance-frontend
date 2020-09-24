@@ -29,7 +29,7 @@ export class DataService {
 				this.config = {
 					backendIP: data.BACKEND_IP,
 					backendPort:  data.BACKEND_PORT,
-					host_address: data.HOST_ADDRESS,
+					host_address: data.HOST_ADDRESS
 				};
 
 				console.log(this.config);
