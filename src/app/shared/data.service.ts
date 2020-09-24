@@ -35,7 +35,7 @@ export class DataService {
 				console.log(this.config);
 
 				if (this.config.host_address != "" ){
-					this.REST_API_SERVER = `https://${this.config.host_address}/be`;
+					this.REST_API_SERVER = `https://${this.config.host_address}/api`;
 				} else {
 					this.REST_API_SERVER = `http://${this.config.backendIP}:${this.config.backendPort}`;
 				}
