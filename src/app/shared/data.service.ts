@@ -25,15 +25,17 @@ export class DataService {
 		this.getConfig()
 			.subscribe((data: Config) => {
 				console.log(data);
+
 				this.config = {
 					backendIP: data.BACKEND_IP,
 					backendPort:  data.BACKEND_PORT,
 					host_address: data.HOST_ADDRESS,
 				};
 
+				console.log(this.config);
+
 				if (this.config.host_address != "" ){
 					this.REST_API_SERVER = `https://${this.config.host_address}/be`;
-
 				} else {
 					this.REST_API_SERVER = `http://${this.config.backendIP}:${this.config.backendPort}`;
 				}
