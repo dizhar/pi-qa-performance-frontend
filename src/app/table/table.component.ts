@@ -26,7 +26,7 @@ export class TableComponent implements OnInit, AfterViewInit {
 
       console.log("(this.outPuts['data']:", this.outPuts['data']);
 
-    this.deleteConfigFiles(this.outPuts['data'])
+    // this.deleteConfigFiles(this.outPuts['data'])
   }
 
 
